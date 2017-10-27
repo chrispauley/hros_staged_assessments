@@ -1,0 +1,11 @@
+[
+  { "formattedName": "Catalog Empty",
+    "link": "data/catalog/catalogType_empty.json"
+  },
+  { "formattedName": "Catalog 01",
+    "link": "data/catalog/catalog_01.json"
+  },
+  { "formattedName": "Catalog 02",
+    "link": "data/catalog/catalog_02.json"
+  }
+]
