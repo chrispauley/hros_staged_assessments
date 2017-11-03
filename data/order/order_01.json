@@ -1,30 +1,102 @@
 {
-    "order": {
-        "packageId": "123456",
-        "documentId": { "value": "" },
-        "subject": {
-            "id": {
-                "value": "C-001",
-                "schemeId": "candidateId"
-            },
-            "name": {
-                "family": "Clegan",
-                "given": "Sandor",
-                "formattedName": "Sandor Clegan"
-            }
-        },
+  "documentId": { "value": "order_01" },
+
+  "party": {
+    "customer": {
+      "id": { "value": "00000123" },
+      "name": "Company ABC",
+      "personContacts": [{
         "communication": {
-            "email": [ { "address": "sandor.clegan@gmail.com" } ]
+          "email": [{
+            "address": "jane.smith@companyabc.com",
+            "name": "work"
+          }],
+          "phone": [{
+            "formattedNumber": "888-555-1234",
+            "name": "work"
+          }],
+          "web": [{ "url": "www.companyabc.com" }]
         },
-        "onCompletionURL": {
-            "uri": "https://assess.example-ap.com/api/v1/id=123456&",
-            "message": "Thank you for completing the assessment."
+        "name": { "preferred": "Jane Smith" },
+        "roleCode": "Hiring Manager"
+      }]
+    },
+    "requester": {
+      "id": { "value": "5000234" },
+      "name": "Modern Recruiting ATS",
+      "personContacts": [{
+        "communication": {
+          "email": [{
+            "address": "robert.jones@ats.com",
+            "name": "work"
+          }],
+          "phone": [{
+            "formattedNumber": "888-555-0123",
+            "name": "work"
+          }],
+          "web": [{ "url": "www.ats.com" }]
         },
-        "sendAssessmentResultsToURL": {
-            "uri": "https://reports.example-ap.com/api/v1/id=123456&",
-            "message": "Assessment report will be available at this URL.",
-            "validFrom": "2016-12-02",
-            "validTo": "2017-02-01"
-        }
+        "name": {
+          "preferred": "Bob Jones",
+          "given": "Robert",
+          "family": "Jones"
+        },
+        "roleCode": "ATS Account Representative"
+      }]
+    },
+    "supplier": {
+      "id": { "value": "5000234" },
+      "name": "Executive Assessments, Inc.",
+      "personContacts": [{
+        "communication": {
+          "email": [{
+            "address": "william.peterson@exectesters.com",
+            "name": "work"
+          }],
+          "phone": [{
+            "formattedNumber": "888-555-9876",
+            "name": "work"
+          }],
+          "web": [{ "url": "www.exectesters.com" }]
+        },
+        "name": {
+          "preferred": "Bill Peterson",
+          "given": "William",
+          "family": "Peterson"
+        },
+        "roleCode": "ATS Account Representative"
+      }]
     }
+  },
+
+  "packageId": "123456",
+
+
+  "subject": {
+    "subjectId": {
+      "value": "C-001",
+      "schemeId": "candidateId"
+    },
+    "name": {
+      "family": "Clegan",
+      "given": "Sandor",
+      "formattedName": "Sandor Clegan"
+    },
+    "internalCandidateIndicator": false,
+    "accomodationTypeCodes": [""]
+  },
+
+  "communication": {
+    "email": [{ "address": "sandor.clegan@gmail.com" }]
+  },
+  "onCompletionURL": {
+    "uri": "https://assess.example-ap.com/api/v1/id=123456&",
+    "message": "Thank you for completing the assessment."
+  },
+  "sendAssessmentResultsToURL": {
+    "uri": "https://reports.example-ap.com/api/v1/id=123456&",
+    "message": "Assessment report will be available at this URL.",
+    "validFrom": "2016-12-02",
+    "validTo": "2017-02-01"
+  }
 }

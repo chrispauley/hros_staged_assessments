@@ -1,0 +1,55 @@
+{
+  "party": {
+    "supplier": {
+      "id": {
+        "value": "5000234"
+      },
+      "name": "Executive Assessments, Inc.",
+      "personContacts": [{
+        "communication": {
+          "email": [{
+            "address": "william.peterson@exectesters.com",
+            "name": "work"
+          }],
+          "phone": [{
+            "formattedNumber": "555-9876",
+            "name": "work"
+          }]
+        },
+        "name": {
+          "preferred": "Bill Peterson",
+          "given": "William",
+          "family": "Peterson"
+        },
+        "roleCode": "AP Account Representative"
+      }]
+    }
+  },
+
+  "packageId": "789",
+  "documentId": { "value": "" },
+  "subject": {
+    "id": {
+      "value": "C-001",
+      "schemeId": "candidateId"
+    },
+    "name": {
+      "family": "Clegan",
+      "given": "Sandor",
+      "formattedName": "Sandor Clegan"
+    }
+  },
+  "communication": {
+    "email": [{ "address": "sandor.clegan@gmail.com" }]
+  },
+  "onCompletionURL": {
+    "uri": "https://assess.example-ap.com/api/v1/id=123456&",
+    "message": "Thank you for completing the assessment."
+  },
+  "sendAssessmentResultsToURL": {
+    "uri": "https://reports.example-ap.com/api/v1/id=123456&",
+    "message": "Assessment report will be available at this URL.",
+    "validFrom": "2016-12-02",
+    "validTo": "2017-02-01"
+  }
+}
