@@ -21453,20 +21453,60 @@ var _react2 = _interopRequireDefault(_react);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-// import { Form, Button } from 'semantic-ui-react';
-
 var Home = function Home() {
   return _react2.default.createElement(
     'div',
-    { className: 'row' },
+    null,
     _react2.default.createElement(
-      'div',
-      { className: 'col-md-12',
-        style: ({ minHeight: '700px' }, { padding: '1em' }) },
+      'section',
+      { className: 'row' },
       _react2.default.createElement(
-        'h1',
-        { className: 'ui inverted header', style: { fontSize: '3em' } },
-        'HROS Assessments: Staged Assessments JSON Viewer'
+        'div',
+        { className: 'col-md-12',
+          style: ({ minHeight: '700px' }, { padding: '1em' }) },
+        _react2.default.createElement(
+          'h1',
+          { style: { fontSize: '3em' } },
+          'HROS Assessments: ',
+          _react2.default.createElement(
+            'small',
+            null,
+            'Staged Assessments JSON Viewer'
+          )
+        ),
+        _react2.default.createElement(
+          'h4',
+          null,
+          'Background'
+        ),
+        _react2.default.createElement(
+          'p',
+          null,
+          'In the HR Open Standards Assessments Specification enables data interchange between trading partners.'
+        )
+      )
+    ),
+    _react2.default.createElement(
+      'section',
+      { className: 'row' },
+      _react2.default.createElement(
+        'div',
+        { className: 'col-md-12' },
+        _react2.default.createElement(
+          'h2',
+          null,
+          'Three Types of Staging'
+        ),
+        _react2.default.createElement(
+          'p',
+          null,
+          '[description]'
+        ),
+        _react2.default.createElement(
+          'div',
+          { className: 'well' },
+          _react2.default.createElement('img', { className: 'img-responsive', src: 'images/StagedAssessments.png', alt: '' })
+        )
       )
     )
   );
