@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 64);
+/******/ 	return __webpack_require__(__webpack_require__.s = 65);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -21421,7 +21421,8 @@ exports.default = Footer;
 /* 61 */,
 /* 62 */,
 /* 63 */,
-/* 64 */
+/* 64 */,
+/* 65 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -21435,7 +21436,7 @@ var _reactDom = __webpack_require__(17);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
-var _About = __webpack_require__(65);
+var _About = __webpack_require__(66);
 
 var _About2 = _interopRequireDefault(_About);
 
@@ -21467,7 +21468,7 @@ _reactDom2.default.render(_react2.default.createElement(_Footer2.default, footer
 _reactDom2.default.render(_react2.default.createElement(_About2.default, null), document.querySelector('main'));
 
 /***/ }),
-/* 65 */
+/* 66 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -21481,7 +21482,21 @@ var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
+var _about = __webpack_require__(67);
+
+var _about2 = _interopRequireDefault(_about);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+// https://blog.haroen.me/json-ld-with-react
+var JsonLd = function JsonLd(_ref) {
+  var data = _ref.data;
+  return _react2.default.createElement(
+    'script',
+    { type: 'application/ld+json' },
+    JSON.stringify(data)
+  );
+};
 
 var About = function About() {
   return _react2.default.createElement(
@@ -21511,17 +21526,50 @@ var About = function About() {
             'Interesting about-info here.'
           ),
           _react2.default.createElement(
-            'a',
-            { href: 'https://github.com/chrispauley/hros_staged_assessments' },
-            'GitHub Repo'
+            'ul',
+            null,
+            _react2.default.createElement(
+              'li',
+              null,
+              _react2.default.createElement(
+                'a',
+                { href: 'https://github.com/chrispauley/hros_staged_assessments' },
+                'GitHub Repo'
+              )
+            ),
+            _react2.default.createElement(
+              'li',
+              null,
+              _react2.default.createElement(
+                'a',
+                { href: 'https://chrispauley.github.io/hros_staged_assessments/index.html' },
+                'This Web Application'
+              )
+            ),
+            _react2.default.createElement(
+              'li',
+              null,
+              _react2.default.createElement(
+                'a',
+                { href: 'http://www.hrvendornews.com/?p=7237' },
+                'HR Open Standards Consortium Announces 4.1 HR-JSON Assessments and Recruiting Standards'
+              )
+            )
           )
         )
       )
-    )
+    ),
+    _react2.default.createElement(JsonLd, { data: _about2.default })
   );
 };
 
 exports.default = About;
+
+/***/ }),
+/* 67 */
+/***/ (function(module, exports) {
+
+module.exports = {"@context":"http://schema.org","@type":"AboutPage","url":"https://chrispauley.github.io/hros_common/","name":"HR Open Standards","author":{"@type":"Person","name":"Chris Pauley"},"description":"Any sort of description, I'd keep it short","publisher":"Chris Pauley","potentialAction":{"@type":"SearchAction","target":"http://www.example.com/?s={search_term}","query-input":"required name=search_term"}}
 
 /***/ })
 /******/ ]);

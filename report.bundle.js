@@ -21391,10 +21391,307 @@ exports.default = Footer;
 // removed by extract-text-webpack-plugin
 
 /***/ }),
-/* 34 */,
-/* 35 */,
-/* 36 */,
-/* 37 */,
+/* 34 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(1);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _DropLoader = __webpack_require__(35);
+
+var _DropLoader2 = _interopRequireDefault(_DropLoader);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var DropLoader = function (_Component) {
+  _inherits(DropLoader, _Component);
+
+  function DropLoader(props) {
+    _classCallCheck(this, DropLoader);
+
+    var _this = _possibleConstructorReturn(this, (DropLoader.__proto__ || Object.getPrototypeOf(DropLoader)).call(this, props));
+
+    _this.onDragEnter = function (e) {
+      _this.setState({ className: 'drop-zone-show' });
+      e.stopPropagation();
+      e.preventDefault();
+      return false;
+    };
+
+    _this.onDragLeave = function (e) {
+      _this.setState({ className: 'drop-zone-hide' });
+      e.stopPropagation();
+      e.preventDefault();
+      return false;
+    };
+
+    _this.onDragOver = function (e) {
+      e.preventDefault();
+      e.stopPropagation();
+      return false;
+    };
+
+    _this.onDrop = function (e) {
+      e.preventDefault();
+      var files = e.dataTransfer.files;
+      var that = _this;
+      // console.log('Files dropped: ', files);
+      // Upload files
+      for (var i = 0; i < files.length; i++) {
+        // console.log(files[0].type, files[0].name);
+        if (files[0].type.indexOf("application/json") == 0) {
+          var reader = new FileReader();
+          reader.onload = function (e) {
+            try {
+              var json = JSON.parse(reader.result);
+              that.setState({ data: json });
+              // Return the data...
+              that.props.onChange(json);
+            } catch (ex) {
+              alert('ex when trying to parse json = ' + ex);
+            }
+          };
+          reader.readAsText(files[0]);
+        }
+      }
+      _this.setState({ className: 'drop-zone-hide' });
+
+      return false;
+    };
+
+    _this.state = {
+      data: {},
+      className: 'drop-zone-hide'
+    };
+
+    return _this;
+  }
+
+  _createClass(DropLoader, [{
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      window.addEventListener('mouseup', this.onDragLeave);
+      window.addEventListener('dragenter', this.onDragEnter);
+      window.addEventListener('dragover', this.onDragOver);
+      document.getElementById('dragbox').addEventListener('dragleave', this.onDragLeave);
+      window.addEventListener('drop', this.onDrop);
+    }
+  }, {
+    key: 'componentWillUnmount',
+    value: function componentWillUnmount() {
+      window.removeEventListener('mouseup', this.onDragLeave);
+      window.removeEventListener('dragenter', this.onDragEnter);
+      window.addEventListener('dragover', this.onDragOver);
+      document.getElementById('dragbox').removeEventListener('dragleave', this.onDragLeave);
+      window.removeEventListener('drop', this.onDrop);
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      // var json = JSON.stringify(this.state.data, 2);
+      return _react2.default.createElement(
+        'div',
+        { className: 'row' },
+        _react2.default.createElement(
+          'div',
+          { id: 'dragbox', className: this.state.className },
+          _react2.default.createElement(
+            'span',
+            null,
+            'Drop a json instance file to upload'
+          )
+        )
+      );
+    }
+  }]);
+
+  return DropLoader;
+}(_react.Component);
+
+exports.default = DropLoader;
+
+/***/ }),
+/* 35 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 36 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(1);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _PartyTypeCard = __webpack_require__(37);
+
+var _PartyTypeCard2 = _interopRequireDefault(_PartyTypeCard);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var PartyTypeHeader = function (_Component) {
+  _inherits(PartyTypeHeader, _Component);
+
+  function PartyTypeHeader(props) {
+    _classCallCheck(this, PartyTypeHeader);
+
+    return _possibleConstructorReturn(this, (PartyTypeHeader.__proto__ || Object.getPrototypeOf(PartyTypeHeader)).call(this, props));
+  }
+
+  _createClass(PartyTypeHeader, [{
+    key: 'render',
+    value: function render() {
+      var _props = this.props,
+          customer = _props.customer,
+          requester = _props.requester,
+          supplier = _props.supplier;
+
+      var cJsx = customer ? _react2.default.createElement(_PartyTypeCard2.default, _extends({}, customer, { type: 'Customer' })) : null;
+      var rJsx = requester ? _react2.default.createElement(_PartyTypeCard2.default, _extends({}, requester, { type: 'Requester' })) : null;
+      var sJsx = supplier ? _react2.default.createElement(_PartyTypeCard2.default, _extends({}, supplier, { type: 'Supplier' })) : null;
+      return _react2.default.createElement(
+        'div',
+        { className: 'row' },
+        _react2.default.createElement(
+          'div',
+          { className: 'col-md-4' },
+          cJsx
+        ),
+        _react2.default.createElement(
+          'div',
+          { className: 'col-md-4' },
+          rJsx
+        ),
+        _react2.default.createElement(
+          'div',
+          { className: 'col-md-4' },
+          sJsx
+        )
+      );
+    }
+  }]);
+
+  return PartyTypeHeader;
+}(_react.Component);
+
+exports.default = PartyTypeHeader;
+
+/***/ }),
+/* 37 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(1);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var PartyTypeCard = function (_Component) {
+  _inherits(PartyTypeCard, _Component);
+
+  function PartyTypeCard(props) {
+    _classCallCheck(this, PartyTypeCard);
+
+    return _possibleConstructorReturn(this, (PartyTypeCard.__proto__ || Object.getPrototypeOf(PartyTypeCard)).call(this, props));
+  }
+
+  _createClass(PartyTypeCard, [{
+    key: 'render',
+    value: function render() {
+      var _props = this.props,
+          id = _props.id,
+          name = _props.name,
+          personContacts = _props.personContacts;
+
+      var idJsx = void 0,
+          nameJsx = void 0,
+          personContactsJsx = null;
+      idJsx = id ? _react2.default.createElement(
+        'span',
+        null,
+        'id: ',
+        id.value
+      ) : null;
+      nameJsx = name ? _react2.default.createElement(
+        'span',
+        null,
+        name
+      ) : null;
+
+      return _react2.default.createElement(
+        'div',
+        { className: 'thumbnail' },
+        _react2.default.createElement(
+          'h4',
+          { className: 'caption text-center' },
+          this.props.type
+        ),
+        _react2.default.createElement(
+          'p',
+          null,
+          idJsx
+        ),
+        nameJsx,
+        _react2.default.createElement('hr', null)
+      );
+    }
+  }]);
+
+  return PartyTypeCard;
+}(_react.Component);
+
+exports.default = PartyTypeCard;
+
+/***/ }),
 /* 38 */,
 /* 39 */,
 /* 40 */,
@@ -21475,25 +21772,226 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(1);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _DropLoader = __webpack_require__(34);
+
+var _DropLoader2 = _interopRequireDefault(_DropLoader);
+
+var _ReportSelectPanel = __webpack_require__(64);
+
+var _ReportSelectPanel2 = _interopRequireDefault(_ReportSelectPanel);
+
+var _PartyTypeHeader = __webpack_require__(36);
+
+var _PartyTypeHeader2 = _interopRequireDefault(_PartyTypeHeader);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+// import PackagePanel from './Package/PackagePanel'
+
+var ReportPage = function (_Component) {
+  _inherits(ReportPage, _Component);
+
+  function ReportPage(props) {
+    _classCallCheck(this, ReportPage);
+
+    var _this = _possibleConstructorReturn(this, (ReportPage.__proto__ || Object.getPrototypeOf(ReportPage)).call(this, props));
+
+    _this.handleClick = function (e) {
+      // Fetch data for e.value
+      e.preventDefault();
+      fetch(e.target.href).then(function (res) {
+        return res.json().then(function (resData) {
+          _this.setState({ report: resData });
+          // console.log(this.state);
+        });
+      });
+    };
+
+    _this.handleDropFileInput = function (data) {
+      _this.setState({ report: data });
+    };
+
+    _this.state = {
+      reports: [],
+      report: {}
+    };
+    return _this;
+  }
+
+  _createClass(ReportPage, [{
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      // Fetch local data
+      var that = this;
+      var result = [];
+      fetch('data/report/report_list.json', {
+        method: 'get'
+      }).then(function (response) {
+        return response.json();
+      }).then(function (j) {
+        j.forEach(function (item) {
+          result.push({
+            name: item.formattedName,
+            link: item.link });
+        });
+      }).then(function () {
+        that.setState({ reports: result });
+      }).catch(function (err) {
+        // Error :(
+        console.log('Fetch returned and error: ' + err);
+      });
+    }
+  }, {
+    key: 'componentWillUnmount',
+    value: function componentWillUnmount() {}
+  }, {
+    key: 'render',
+    value: function render() {
+      var packages = this.state.report.packages;
+      var party = this.state.report.party;
+
+      return _react2.default.createElement(
+        'div',
+        null,
+        _react2.default.createElement(
+          'div',
+          { className: 'panel-group' },
+          _react2.default.createElement(
+            'div',
+            { className: 'panel panel-default' },
+            _react2.default.createElement(
+              'h4',
+              { className: 'panel-title' },
+              _react2.default.createElement(
+                'a',
+                { href: '#positions-list', 'data-toggle': 'collapse' },
+                'Pick a report here.'
+              ),
+              _react2.default.createElement('i', { className: 'caret' })
+            ),
+            _react2.default.createElement(
+              'div',
+              { id: 'positions-list', className: 'panel-collapse collapse' },
+              _react2.default.createElement(
+                'div',
+                { className: 'panel-body' },
+                _react2.default.createElement(_ReportSelectPanel2.default, _extends({}, this.state, { onClick: this.handleClick.bind(this) }))
+              ),
+              _react2.default.createElement(
+                'div',
+                { className: 'panel-footer' },
+                '[pagination-links-go-here]'
+              )
+            )
+          )
+        ),
+        _react2.default.createElement(_DropLoader2.default, { onChange: this.handleDropFileInput }),
+        party ? _react2.default.createElement(_PartyTypeHeader2.default, party) : null
+      );
+    }
+  }]);
+
+  return ReportPage;
+}(_react.Component);
+
+exports.default = ReportPage;
+
+/***/ }),
+/* 64 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
 var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var ReportPage = function ReportPage(props) {
-  return _react2.default.createElement(
-    'div',
-    null,
-    _react2.default.createElement(
-      'span',
-      null,
-      'ReportPage'
-    )
-  );
-};
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-exports.default = ReportPage;
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var ReportSelectPanel = function (_Component) {
+  _inherits(ReportSelectPanel, _Component);
+
+  function ReportSelectPanel(props) {
+    _classCallCheck(this, ReportSelectPanel);
+
+    var _this = _possibleConstructorReturn(this, (ReportSelectPanel.__proto__ || Object.getPrototypeOf(ReportSelectPanel)).call(this, props));
+
+    _this.state = {
+      reports: props.reports
+    };
+    return _this;
+  }
+
+  _createClass(ReportSelectPanel, [{
+    key: 'render',
+    value: function render() {
+      var _this2 = this;
+
+      var list = this.props.reports.map(function (item, i) {
+        // console.log("i: ", i, item);
+        return _react2.default.createElement(
+          'li',
+          { key: i },
+          _react2.default.createElement(
+            'a',
+            { href: item.link, onClick: _this2.props.onClick },
+            item.name
+          ),
+          ' ',
+          _react2.default.createElement(
+            'span',
+            null,
+            _react2.default.createElement(
+              'a',
+              { className: 'btn btn-primary btn-sm', href: item.link, target: '_new' },
+              'json'
+            )
+          )
+        );
+      });
+      return _react2.default.createElement(
+        'div',
+        null,
+        _react2.default.createElement(
+          'ul',
+          null,
+          list
+        )
+      );
+    }
+  }]);
+
+  return ReportSelectPanel;
+}(_react.Component);
+
+exports.default = ReportSelectPanel;
 
 /***/ })
 /******/ ]);
