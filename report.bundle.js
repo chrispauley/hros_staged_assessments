@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 63);
+/******/ 	return __webpack_require__(__webpack_require__.s = 65);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -21391,7 +21391,8 @@ exports.default = Footer;
 // removed by extract-text-webpack-plugin
 
 /***/ }),
-/* 34 */
+/* 34 */,
+/* 35 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -21407,7 +21408,7 @@ var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _DropLoader = __webpack_require__(35);
+var _DropLoader = __webpack_require__(36);
 
 var _DropLoader2 = _interopRequireDefault(_DropLoader);
 
@@ -21527,13 +21528,13 @@ var DropLoader = function (_Component) {
 exports.default = DropLoader;
 
 /***/ }),
-/* 35 */
+/* 36 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
 /***/ }),
-/* 36 */
+/* 37 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -21551,7 +21552,7 @@ var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _PartyTypeCard = __webpack_require__(37);
+var _PartyTypeCard = __webpack_require__(38);
 
 var _PartyTypeCard2 = _interopRequireDefault(_PartyTypeCard);
 
@@ -21563,16 +21564,16 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var PartyTypeHeader = function (_Component) {
-  _inherits(PartyTypeHeader, _Component);
+var PartyTypePanel = function (_Component) {
+  _inherits(PartyTypePanel, _Component);
 
-  function PartyTypeHeader(props) {
-    _classCallCheck(this, PartyTypeHeader);
+  function PartyTypePanel(props) {
+    _classCallCheck(this, PartyTypePanel);
 
-    return _possibleConstructorReturn(this, (PartyTypeHeader.__proto__ || Object.getPrototypeOf(PartyTypeHeader)).call(this, props));
+    return _possibleConstructorReturn(this, (PartyTypePanel.__proto__ || Object.getPrototypeOf(PartyTypePanel)).call(this, props));
   }
 
-  _createClass(PartyTypeHeader, [{
+  _createClass(PartyTypePanel, [{
     key: 'render',
     value: function render() {
       var _props = this.props,
@@ -21580,38 +21581,66 @@ var PartyTypeHeader = function (_Component) {
           requester = _props.requester,
           supplier = _props.supplier;
 
-      var cJsx = customer ? _react2.default.createElement(_PartyTypeCard2.default, _extends({}, customer, { type: 'Customer' })) : null;
-      var rJsx = requester ? _react2.default.createElement(_PartyTypeCard2.default, _extends({}, requester, { type: 'Requester' })) : null;
-      var sJsx = supplier ? _react2.default.createElement(_PartyTypeCard2.default, _extends({}, supplier, { type: 'Supplier' })) : null;
+
       return _react2.default.createElement(
         'div',
-        { className: 'row' },
+        null,
         _react2.default.createElement(
           'div',
-          { className: 'col-md-4' },
-          cJsx
-        ),
-        _react2.default.createElement(
-          'div',
-          { className: 'col-md-4' },
-          rJsx
-        ),
-        _react2.default.createElement(
-          'div',
-          { className: 'col-md-4' },
-          sJsx
+          { className: 'panel-group' },
+          _react2.default.createElement(
+            'div',
+            { className: 'panel panel-default' },
+            _react2.default.createElement(
+              'h4',
+              { className: 'panel-title' },
+              _react2.default.createElement(
+                'a',
+                { href: '#partytype-panel', 'data-toggle': 'collapse' },
+                'Assessment Parties'
+              ),
+              _react2.default.createElement('i', { className: 'caret' })
+            ),
+            _react2.default.createElement(
+              'div',
+              { id: 'partytype-panel', className: 'panel-collapse collapse' },
+              _react2.default.createElement(
+                'div',
+                { className: 'panel-body' },
+                _react2.default.createElement(
+                  'div',
+                  { className: 'row' },
+                  _react2.default.createElement(
+                    'div',
+                    { className: 'col-md-4' },
+                    customer && _react2.default.createElement(_PartyTypeCard2.default, _extends({}, customer, { type: 'Customer' }))
+                  ),
+                  _react2.default.createElement(
+                    'div',
+                    { className: 'col-md-4' },
+                    requester && _react2.default.createElement(_PartyTypeCard2.default, _extends({}, requester, { type: 'Requester' }))
+                  ),
+                  _react2.default.createElement(
+                    'div',
+                    { className: 'col-md-4' },
+                    supplier && _react2.default.createElement(_PartyTypeCard2.default, _extends({}, supplier, { type: 'Supplier' }))
+                  )
+                )
+              )
+            )
+          )
         )
       );
     }
   }]);
 
-  return PartyTypeHeader;
+  return PartyTypePanel;
 }(_react.Component);
 
-exports.default = PartyTypeHeader;
+exports.default = PartyTypePanel;
 
 /***/ }),
-/* 37 */
+/* 38 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -21692,7 +21721,6 @@ var PartyTypeCard = function (_Component) {
 exports.default = PartyTypeCard;
 
 /***/ }),
-/* 38 */,
 /* 39 */,
 /* 40 */,
 /* 41 */,
@@ -21717,7 +21745,9 @@ exports.default = PartyTypeCard;
 /* 60 */,
 /* 61 */,
 /* 62 */,
-/* 63 */
+/* 63 */,
+/* 64 */,
+/* 65 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -21731,7 +21761,7 @@ var _reactDom = __webpack_require__(17);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
-var _ReportPage = __webpack_require__(64);
+var _ReportPage = __webpack_require__(66);
 
 var _ReportPage2 = _interopRequireDefault(_ReportPage);
 
@@ -21763,7 +21793,7 @@ _reactDom2.default.render(_react2.default.createElement(_Footer2.default, footer
 _reactDom2.default.render(_react2.default.createElement(_ReportPage2.default, null), document.querySelector('main'));
 
 /***/ }),
-/* 64 */
+/* 66 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -21781,17 +21811,17 @@ var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _DropLoader = __webpack_require__(34);
+var _DropLoader = __webpack_require__(35);
 
 var _DropLoader2 = _interopRequireDefault(_DropLoader);
 
-var _ReportSelectPanel = __webpack_require__(65);
+var _ReportSelectPanel = __webpack_require__(67);
 
 var _ReportSelectPanel2 = _interopRequireDefault(_ReportSelectPanel);
 
-var _PartyTypeHeader = __webpack_require__(36);
+var _PartyTypePanel = __webpack_require__(37);
 
-var _PartyTypeHeader2 = _interopRequireDefault(_PartyTypeHeader);
+var _PartyTypePanel2 = _interopRequireDefault(_PartyTypePanel);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -21901,7 +21931,7 @@ var ReportPage = function (_Component) {
           )
         ),
         _react2.default.createElement(_DropLoader2.default, { onChange: this.handleDropFileInput }),
-        party ? _react2.default.createElement(_PartyTypeHeader2.default, party) : null
+        party ? _react2.default.createElement(_PartyTypePanel2.default, party) : null
       );
     }
   }]);
@@ -21912,7 +21942,7 @@ var ReportPage = function (_Component) {
 exports.default = ReportPage;
 
 /***/ }),
-/* 65 */
+/* 67 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";

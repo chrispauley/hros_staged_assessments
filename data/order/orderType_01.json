@@ -98,5 +98,10 @@
     "message": "Assessment report will be available at this URL.",
     "validFrom": "2016-12-02",
     "validTo": "2017-02-01"
-  }
+  },
+  "testLocationId": {"schemeId": "testLocations", "value": "web"},
+  "assessmentLanguageCodes": ["en-US", "en"],
+  "assessmentResultLanguageCodes": ["en-US"],
+  "comparisonGroupIds": [{ "schemeId": "group1-cgid", "value": "1" }, { "schemeId": "group2-cgid", "value": "2" }],
+  "assessmentRequesterName": "Chris Pauley"
 }

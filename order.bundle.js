@@ -21397,6 +21397,111 @@ exports.default = Footer;
 "use strict";
 
 
+var randomFromSeed = __webpack_require__(42);
+
+var ORIGINAL = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_-';
+var alphabet;
+var previousSeed;
+
+var shuffled;
+
+function reset() {
+    shuffled = false;
+}
+
+function setCharacters(_alphabet_) {
+    if (!_alphabet_) {
+        if (alphabet !== ORIGINAL) {
+            alphabet = ORIGINAL;
+            reset();
+        }
+        return;
+    }
+
+    if (_alphabet_ === alphabet) {
+        return;
+    }
+
+    if (_alphabet_.length !== ORIGINAL.length) {
+        throw new Error('Custom alphabet for shortid must be ' + ORIGINAL.length + ' unique characters. You submitted ' + _alphabet_.length + ' characters: ' + _alphabet_);
+    }
+
+    var unique = _alphabet_.split('').filter(function(item, ind, arr){
+       return ind !== arr.lastIndexOf(item);
+    });
+
+    if (unique.length) {
+        throw new Error('Custom alphabet for shortid must be ' + ORIGINAL.length + ' unique characters. These characters were not unique: ' + unique.join(', '));
+    }
+
+    alphabet = _alphabet_;
+    reset();
+}
+
+function characters(_alphabet_) {
+    setCharacters(_alphabet_);
+    return alphabet;
+}
+
+function setSeed(seed) {
+    randomFromSeed.seed(seed);
+    if (previousSeed !== seed) {
+        reset();
+        previousSeed = seed;
+    }
+}
+
+function shuffle() {
+    if (!alphabet) {
+        setCharacters(ORIGINAL);
+    }
+
+    var sourceArray = alphabet.split('');
+    var targetArray = [];
+    var r = randomFromSeed.nextValue();
+    var characterIndex;
+
+    while (sourceArray.length > 0) {
+        r = randomFromSeed.nextValue();
+        characterIndex = Math.floor(r * sourceArray.length);
+        targetArray.push(sourceArray.splice(characterIndex, 1)[0]);
+    }
+    return targetArray.join('');
+}
+
+function getShuffled() {
+    if (shuffled) {
+        return shuffled;
+    }
+    shuffled = shuffle();
+    return shuffled;
+}
+
+/**
+ * lookup shuffled letter
+ * @param index
+ * @returns {string}
+ */
+function lookup(index) {
+    var alphabetShuffled = getShuffled();
+    return alphabetShuffled[index];
+}
+
+module.exports = {
+    characters: characters,
+    seed: setSeed,
+    lookup: lookup,
+    shuffled: getShuffled
+};
+
+
+/***/ }),
+/* 35 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
@@ -21407,7 +21512,7 @@ var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _DropLoader = __webpack_require__(35);
+var _DropLoader = __webpack_require__(36);
 
 var _DropLoader2 = _interopRequireDefault(_DropLoader);
 
@@ -21527,13 +21632,13 @@ var DropLoader = function (_Component) {
 exports.default = DropLoader;
 
 /***/ }),
-/* 35 */
+/* 36 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
 /***/ }),
-/* 36 */
+/* 37 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -21551,7 +21656,7 @@ var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _PartyTypeCard = __webpack_require__(37);
+var _PartyTypeCard = __webpack_require__(38);
 
 var _PartyTypeCard2 = _interopRequireDefault(_PartyTypeCard);
 
@@ -21563,16 +21668,16 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var PartyTypeHeader = function (_Component) {
-  _inherits(PartyTypeHeader, _Component);
+var PartyTypePanel = function (_Component) {
+  _inherits(PartyTypePanel, _Component);
 
-  function PartyTypeHeader(props) {
-    _classCallCheck(this, PartyTypeHeader);
+  function PartyTypePanel(props) {
+    _classCallCheck(this, PartyTypePanel);
 
-    return _possibleConstructorReturn(this, (PartyTypeHeader.__proto__ || Object.getPrototypeOf(PartyTypeHeader)).call(this, props));
+    return _possibleConstructorReturn(this, (PartyTypePanel.__proto__ || Object.getPrototypeOf(PartyTypePanel)).call(this, props));
   }
 
-  _createClass(PartyTypeHeader, [{
+  _createClass(PartyTypePanel, [{
     key: 'render',
     value: function render() {
       var _props = this.props,
@@ -21580,38 +21685,66 @@ var PartyTypeHeader = function (_Component) {
           requester = _props.requester,
           supplier = _props.supplier;
 
-      var cJsx = customer ? _react2.default.createElement(_PartyTypeCard2.default, _extends({}, customer, { type: 'Customer' })) : null;
-      var rJsx = requester ? _react2.default.createElement(_PartyTypeCard2.default, _extends({}, requester, { type: 'Requester' })) : null;
-      var sJsx = supplier ? _react2.default.createElement(_PartyTypeCard2.default, _extends({}, supplier, { type: 'Supplier' })) : null;
+
       return _react2.default.createElement(
         'div',
-        { className: 'row' },
+        null,
         _react2.default.createElement(
           'div',
-          { className: 'col-md-4' },
-          cJsx
-        ),
-        _react2.default.createElement(
-          'div',
-          { className: 'col-md-4' },
-          rJsx
-        ),
-        _react2.default.createElement(
-          'div',
-          { className: 'col-md-4' },
-          sJsx
+          { className: 'panel-group' },
+          _react2.default.createElement(
+            'div',
+            { className: 'panel panel-default' },
+            _react2.default.createElement(
+              'h4',
+              { className: 'panel-title' },
+              _react2.default.createElement(
+                'a',
+                { href: '#partytype-panel', 'data-toggle': 'collapse' },
+                'Assessment Parties'
+              ),
+              _react2.default.createElement('i', { className: 'caret' })
+            ),
+            _react2.default.createElement(
+              'div',
+              { id: 'partytype-panel', className: 'panel-collapse collapse' },
+              _react2.default.createElement(
+                'div',
+                { className: 'panel-body' },
+                _react2.default.createElement(
+                  'div',
+                  { className: 'row' },
+                  _react2.default.createElement(
+                    'div',
+                    { className: 'col-md-4' },
+                    customer && _react2.default.createElement(_PartyTypeCard2.default, _extends({}, customer, { type: 'Customer' }))
+                  ),
+                  _react2.default.createElement(
+                    'div',
+                    { className: 'col-md-4' },
+                    requester && _react2.default.createElement(_PartyTypeCard2.default, _extends({}, requester, { type: 'Requester' }))
+                  ),
+                  _react2.default.createElement(
+                    'div',
+                    { className: 'col-md-4' },
+                    supplier && _react2.default.createElement(_PartyTypeCard2.default, _extends({}, supplier, { type: 'Supplier' }))
+                  )
+                )
+              )
+            )
+          )
         )
       );
     }
   }]);
 
-  return PartyTypeHeader;
+  return PartyTypePanel;
 }(_react.Component);
 
-exports.default = PartyTypeHeader;
+exports.default = PartyTypePanel;
 
 /***/ }),
-/* 37 */
+/* 38 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -21692,16 +21825,281 @@ var PartyTypeCard = function (_Component) {
 exports.default = PartyTypeCard;
 
 /***/ }),
-/* 38 */,
-/* 39 */,
-/* 40 */,
-/* 41 */,
-/* 42 */,
-/* 43 */,
-/* 44 */,
-/* 45 */,
-/* 46 */,
-/* 47 */,
+/* 39 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var randomByte = __webpack_require__(43);
+
+function encode(lookup, number) {
+    var loopCounter = 0;
+    var done;
+
+    var str = '';
+
+    while (!done) {
+        str = str + lookup( ( (number >> (4 * loopCounter)) & 0x0f ) | randomByte() );
+        done = number < (Math.pow(16, loopCounter + 1 ) );
+        loopCounter++;
+    }
+    return str;
+}
+
+module.exports = encode;
+
+
+/***/ }),
+/* 40 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+module.exports = __webpack_require__(41);
+
+
+/***/ }),
+/* 41 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var alphabet = __webpack_require__(34);
+var encode = __webpack_require__(39);
+var decode = __webpack_require__(44);
+var build = __webpack_require__(45);
+var isValid = __webpack_require__(46);
+
+// if you are using cluster or multiple servers use this to make each instance
+// has a unique value for worker
+// Note: I don't know if this is automatically set when using third
+// party cluster solutions such as pm2.
+var clusterWorkerId = __webpack_require__(47) || 0;
+
+/**
+ * Set the seed.
+ * Highly recommended if you don't want people to try to figure out your id schema.
+ * exposed as shortid.seed(int)
+ * @param seed Integer value to seed the random alphabet.  ALWAYS USE THE SAME SEED or you might get overlaps.
+ */
+function seed(seedValue) {
+    alphabet.seed(seedValue);
+    return module.exports;
+}
+
+/**
+ * Set the cluster worker or machine id
+ * exposed as shortid.worker(int)
+ * @param workerId worker must be positive integer.  Number less than 16 is recommended.
+ * returns shortid module so it can be chained.
+ */
+function worker(workerId) {
+    clusterWorkerId = workerId;
+    return module.exports;
+}
+
+/**
+ *
+ * sets new characters to use in the alphabet
+ * returns the shuffled alphabet
+ */
+function characters(newCharacters) {
+    if (newCharacters !== undefined) {
+        alphabet.characters(newCharacters);
+    }
+
+    return alphabet.shuffled();
+}
+
+/**
+ * Generate unique id
+ * Returns string id
+ */
+function generate() {
+  return build(clusterWorkerId);
+}
+
+// Export all other functions as properties of the generate function
+module.exports = generate;
+module.exports.generate = generate;
+module.exports.seed = seed;
+module.exports.worker = worker;
+module.exports.characters = characters;
+module.exports.decode = decode;
+module.exports.isValid = isValid;
+
+
+/***/ }),
+/* 42 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+// Found this seed-based random generator somewhere
+// Based on The Central Randomizer 1.3 (C) 1997 by Paul Houle (houle@msc.cornell.edu)
+
+var seed = 1;
+
+/**
+ * return a random number based on a seed
+ * @param seed
+ * @returns {number}
+ */
+function getNextValue() {
+    seed = (seed * 9301 + 49297) % 233280;
+    return seed/(233280.0);
+}
+
+function setSeed(_seed_) {
+    seed = _seed_;
+}
+
+module.exports = {
+    nextValue: getNextValue,
+    seed: setSeed
+};
+
+
+/***/ }),
+/* 43 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var crypto = typeof window === 'object' && (window.crypto || window.msCrypto); // IE 11 uses window.msCrypto
+
+function randomByte() {
+    if (!crypto || !crypto.getRandomValues) {
+        return Math.floor(Math.random() * 256) & 0x30;
+    }
+    var dest = new Uint8Array(1);
+    crypto.getRandomValues(dest);
+    return dest[0] & 0x30;
+}
+
+module.exports = randomByte;
+
+
+/***/ }),
+/* 44 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var alphabet = __webpack_require__(34);
+
+/**
+ * Decode the id to get the version and worker
+ * Mainly for debugging and testing.
+ * @param id - the shortid-generated id.
+ */
+function decode(id) {
+    var characters = alphabet.shuffled();
+    return {
+        version: characters.indexOf(id.substr(0, 1)) & 0x0f,
+        worker: characters.indexOf(id.substr(1, 1)) & 0x0f
+    };
+}
+
+module.exports = decode;
+
+
+/***/ }),
+/* 45 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var encode = __webpack_require__(39);
+var alphabet = __webpack_require__(34);
+
+// Ignore all milliseconds before a certain time to reduce the size of the date entropy without sacrificing uniqueness.
+// This number should be updated every year or so to keep the generated id short.
+// To regenerate `new Date() - 0` and bump the version. Always bump the version!
+var REDUCE_TIME = 1459707606518;
+
+// don't change unless we change the algos or REDUCE_TIME
+// must be an integer and less than 16
+var version = 6;
+
+// Counter is used when shortid is called multiple times in one second.
+var counter;
+
+// Remember the last time shortid was called in case counter is needed.
+var previousSeconds;
+
+/**
+ * Generate unique id
+ * Returns string id
+ */
+function build(clusterWorkerId) {
+
+    var str = '';
+
+    var seconds = Math.floor((Date.now() - REDUCE_TIME) * 0.001);
+
+    if (seconds === previousSeconds) {
+        counter++;
+    } else {
+        counter = 0;
+        previousSeconds = seconds;
+    }
+
+    str = str + encode(alphabet.lookup, version);
+    str = str + encode(alphabet.lookup, clusterWorkerId);
+    if (counter > 0) {
+        str = str + encode(alphabet.lookup, counter);
+    }
+    str = str + encode(alphabet.lookup, seconds);
+
+    return str;
+}
+
+module.exports = build;
+
+
+/***/ }),
+/* 46 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var alphabet = __webpack_require__(34);
+
+function isShortId(id) {
+    if (!id || typeof id !== 'string' || id.length < 6 ) {
+        return false;
+    }
+
+    var characters = alphabet.characters();
+    var len = id.length;
+    for(var i = 0; i < len;i++) {
+        if (characters.indexOf(id[i]) === -1) {
+            return false;
+        }
+    }
+    return true;
+}
+
+module.exports = isShortId;
+
+
+/***/ }),
+/* 47 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+module.exports = 0;
+
+
+/***/ }),
 /* 48 */,
 /* 49 */,
 /* 50 */,
@@ -21776,7 +22174,7 @@ var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _DropLoader = __webpack_require__(34);
+var _DropLoader = __webpack_require__(35);
 
 var _DropLoader2 = _interopRequireDefault(_DropLoader);
 
@@ -21784,9 +22182,9 @@ var _OrderSelectPanel = __webpack_require__(60);
 
 var _OrderSelectPanel2 = _interopRequireDefault(_OrderSelectPanel);
 
-var _PartyTypeHeader = __webpack_require__(36);
+var _PartyTypePanel = __webpack_require__(37);
 
-var _PartyTypeHeader2 = _interopRequireDefault(_PartyTypeHeader);
+var _PartyTypePanel2 = _interopRequireDefault(_PartyTypePanel);
 
 var _SubjectPanel = __webpack_require__(61);
 
@@ -21865,7 +22263,8 @@ var OrderPage = function (_Component) {
     value: function render() {
       var _state$order = this.state.order,
           party = _state$order.party,
-          subject = _state$order.subject;
+          subject = _state$order.subject,
+          packageId = _state$order.packageId;
 
 
       return _react2.default.createElement(
@@ -21903,9 +22302,9 @@ var OrderPage = function (_Component) {
             )
           )
         ),
-        party && _react2.default.createElement(_PartyTypeHeader2.default, party),
+        party && _react2.default.createElement(_PartyTypePanel2.default, party),
         subject && _react2.default.createElement(_SubjectPanel2.default, subject),
-        _react2.default.createElement(_OrderDetailsPanel2.default, subject)
+        packageId && _react2.default.createElement(_OrderDetailsPanel2.default, this.state.order)
       );
     }
   }]);
@@ -22041,49 +22440,64 @@ var SubjectPanel = function (_Component) {
           internalCandidateIndicator = _props.internalCandidateIndicator,
           accomodationTypeCodes = _props.accomodationTypeCodes;
 
-      var sidJsx = void 0,
-          nameJsx = void 0,
-          iciJsx = void 0,
-          atcJsx = null;
-      sidJsx = subjectId ? _react2.default.createElement(
-        'span',
-        null,
-        'subjectId: ',
-        subjectId.value
-      ) : null;
-      nameJsx = name ? _react2.default.createElement(
-        'span',
-        null,
-        name.formattedName
-      ) : null;
-      iciJsx = internalCandidateIndicator ? _react2.default.createElement(
-        'span',
-        null,
-        internalCandidateIndicator
-      ) : null;
-      atcJsx = accomodationTypeCodes ? _react2.default.createElement(
-        'span',
-        null,
-        accomodationTypeCodes[0]
-      ) : null;
 
       return _react2.default.createElement(
         'div',
-        { className: 'thumbnail' },
+        null,
         _react2.default.createElement(
-          'h4',
-          { className: 'caption text-center' },
-          'Assessment Subject'
-        ),
-        _react2.default.createElement(
-          'p',
-          null,
-          sidJsx
-        ),
-        nameJsx,
-        iciJsx,
-        atcJsx,
-        _react2.default.createElement('hr', null)
+          'div',
+          { className: 'panel-group' },
+          _react2.default.createElement(
+            'div',
+            { className: 'panel panel-default' },
+            _react2.default.createElement(
+              'h4',
+              { className: 'panel-title' },
+              _react2.default.createElement(
+                'a',
+                { href: '#assessments-subject-panel', 'data-toggle': 'collapse' },
+                'Assessment Subject'
+              ),
+              _react2.default.createElement('i', { className: 'caret' })
+            ),
+            _react2.default.createElement(
+              'div',
+              { id: 'assessments-subject-panel', className: 'panel-collapse collapse' },
+              _react2.default.createElement(
+                'div',
+                { className: 'panel-body' },
+                subjectId && _react2.default.createElement(
+                  'p',
+                  null,
+                  '(',
+                  _react2.default.createElement(
+                    'span',
+                    null,
+                    'subjectId: ',
+                    subjectId.value
+                  ),
+                  ' )'
+                ),
+                name && _react2.default.createElement(
+                  'span',
+                  null,
+                  name.formattedName
+                ),
+                internalCandidateIndicator && _react2.default.createElement(
+                  'span',
+                  null,
+                  internalCandidateIndicator
+                ),
+                accomodationTypeCodes && _react2.default.createElement(
+                  'span',
+                  null,
+                  accomodationTypeCodes[0]
+                ),
+                _react2.default.createElement('hr', null)
+              )
+            )
+          )
+        )
       );
     }
   }]);
@@ -22095,6 +22509,163 @@ exports.default = SubjectPanel;
 
 /***/ }),
 /* 62 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(1);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _IdentifierTypeTable = __webpack_require__(63);
+
+var _IdentifierTypeTable2 = _interopRequireDefault(_IdentifierTypeTable);
+
+var _IdentifierTypeArrayTable = __webpack_require__(64);
+
+var _IdentifierTypeArrayTable2 = _interopRequireDefault(_IdentifierTypeArrayTable);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var OrderDetailsPanel = function (_Component) {
+  _inherits(OrderDetailsPanel, _Component);
+
+  function OrderDetailsPanel(props) {
+    _classCallCheck(this, OrderDetailsPanel);
+
+    return _possibleConstructorReturn(this, (OrderDetailsPanel.__proto__ || Object.getPrototypeOf(OrderDetailsPanel)).call(this, props));
+    // console.log('OrderDetailsPanel.props', props);
+  }
+
+  _createClass(OrderDetailsPanel, [{
+    key: 'render',
+    value: function render() {
+      var _props = this.props,
+          packageId = _props.packageId,
+          comparisonGroupIds = _props.comparisonGroupIds,
+          assessmentRequesterName = _props.assessmentRequesterName,
+          assessmentLanguageCodes = _props.assessmentLanguageCodes,
+          assessmentResultLanguageCodes = _props.assessmentResultLanguageCodes,
+          assessmentAccess = _props.assessmentAccess,
+          id = _props.id,
+          assessmentCommunication = _props.assessmentCommunication,
+          descriptions = _props.descriptions,
+          testLocationId = _props.testLocationId,
+          onCompletionURL = _props.onCompletionURL,
+          assessmentAccessURL = _props.assessmentAccessURL,
+          sendAssessmentResultsToURL = _props.sendAssessmentResultsToURL,
+          invitationByPartyCode = _props.invitationByPartyCode;
+
+      console.log('comparisonGroupIds is an ', typeof comparisonGroupIds === 'undefined' ? 'undefined' : _typeof(comparisonGroupIds), comparisonGroupIds);
+
+      var cgidJsx = null;
+      cgidJsx = comparisonGroupIds ? _react2.default.createElement(_IdentifierTypeArrayTable2.default, _extends({ caption: 'comparisonGroupIds' }, this.props)) : null;
+
+      return _react2.default.createElement(
+        'div',
+        null,
+        _react2.default.createElement(
+          'div',
+          { className: 'panel-group' },
+          _react2.default.createElement(
+            'div',
+            { className: 'panel panel-default' },
+            _react2.default.createElement(
+              'h4',
+              { className: 'panel-title' },
+              _react2.default.createElement(
+                'a',
+                { href: '#orderdetails-panel', 'data-toggle': 'collapse' },
+                'Order Details'
+              ),
+              _react2.default.createElement('i', { className: 'caret' })
+            ),
+            _react2.default.createElement(
+              'div',
+              { id: 'orderdetails-panel', className: 'panel-collapse' },
+              _react2.default.createElement(
+                'div',
+                { className: 'panel-body' },
+                _react2.default.createElement(
+                  'div',
+                  { className: 'row well' },
+                  _react2.default.createElement(
+                    'div',
+                    { className: 'col-sm-2' },
+                    _react2.default.createElement(
+                      'b',
+                      null,
+                      'packageId:'
+                    ),
+                    packageId
+                  ),
+                  _react2.default.createElement(
+                    'div',
+                    { className: 'col-sm-3' },
+                    _react2.default.createElement(
+                      'b',
+                      null,
+                      'Requester Name:'
+                    ),
+                    assessmentRequesterName && assessmentRequesterName
+                  )
+                ),
+                cgidJsx,
+                testLocationId ? _react2.default.createElement(_IdentifierTypeTable2.default, _extends({
+                  caption: 'testLocationId' }, testLocationId)) : null
+              )
+            )
+          )
+        )
+      );
+    }
+  }]);
+
+  return OrderDetailsPanel;
+}(_react.Component);
+
+function LanguageList(props) {
+  if (props.length === 0) return null;
+  return _react2.default.createElement(
+    'div',
+    null,
+    _react2.default.createElement(
+      'b',
+      null,
+      'assessmentLanguageCodes:'
+    ),
+    _react2.default.createElement(
+      'span',
+      null,
+      props.map(function (item) {
+        return item;
+      }),
+      ' '
+    )
+  );
+}
+
+exports.default = OrderDetailsPanel;
+
+/***/ }),
+/* 63 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -22118,74 +22689,124 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var OrderDetailsPanel = function (_Component) {
-  _inherits(OrderDetailsPanel, _Component);
+var IdentifierTypeTable = function (_Component) {
+  _inherits(IdentifierTypeTable, _Component);
 
-  function OrderDetailsPanel(props) {
-    _classCallCheck(this, OrderDetailsPanel);
+  function IdentifierTypeTable(props) {
+    _classCallCheck(this, IdentifierTypeTable);
 
-    return _possibleConstructorReturn(this, (OrderDetailsPanel.__proto__ || Object.getPrototypeOf(OrderDetailsPanel)).call(this, props));
+    return _possibleConstructorReturn(this, (IdentifierTypeTable.__proto__ || Object.getPrototypeOf(IdentifierTypeTable)).call(this, props));
+    // console.log('IdentifierTypeTable.props', props);
   }
 
-  _createClass(OrderDetailsPanel, [{
+  _createClass(IdentifierTypeTable, [{
     key: 'render',
     value: function render() {
       var _props = this.props,
-          packageId = _props.packageId,
-          comparisonGroupIds = _props.comparisonGroupIds,
-          assessmentRequesterName = _props.assessmentRequesterName,
-          assessmentLanguageCodes = _props.assessmentLanguageCodes,
-          assessmentResultLanguageCodes = _props.assessmentResultLanguageCodes,
-          assessmentAccess = _props.assessmentAccess,
-          id = _props.id,
-          assessmentCommunication = _props.assessmentCommunication,
-          descriptions = _props.descriptions,
-          testLocationId = _props.testLocationId,
-          onCompletionURL = _props.onCompletionURL,
-          assessmentAccessURL = _props.assessmentAccessURL,
-          sendAssessmentResultsToURL = _props.sendAssessmentResultsToURL,
-          invitationByPartyCode = _props.invitationByPartyCode;
+          caption = _props.caption,
+          schemeId = _props.schemeId,
+          value = _props.value,
+          schemeVersionId = _props.schemeVersionId,
+          schemeAgencyId = _props.schemeAgencyId,
+          description = _props.description,
+          schemeLink = _props.schemeLink,
+          agencyUri = _props.agencyUri;
 
 
       return _react2.default.createElement(
         'div',
-        null,
+        { className: 'identifierTypeTable' },
         _react2.default.createElement(
-          'div',
-          { className: 'panel-group' },
+          'table',
+          { className: 'table' },
+          caption && _react2.default.createElement(
+            'caption',
+            null,
+            caption
+          ),
           _react2.default.createElement(
-            'div',
-            { className: 'panel panel-default' },
+            'thead',
+            null,
             _react2.default.createElement(
-              'h4',
-              { className: 'panel-title' },
+              'tr',
+              null,
               _react2.default.createElement(
-                'a',
-                { href: '#orderdetails-panel', 'data-toggle': 'collapse' },
-                'Order Details'
+                'th',
+                null,
+                'SchemeId'
               ),
-              _react2.default.createElement('i', { className: 'caret' })
-            ),
-            _react2.default.createElement(
-              'div',
-              { id: 'orderdetails-panel', className: 'panel-collapse collapse' },
               _react2.default.createElement(
-                'div',
-                { className: 'panel-body' },
-                _react2.default.createElement(
-                  'div',
-                  { className: 'row' },
-                  _react2.default.createElement(
-                    'col-sm-2',
-                    null,
-                    'packageId'
-                  ),
-                  _react2.default.createElement(
-                    'col-sm-2',
-                    null,
-                    packageId
-                  )
-                )
+                'th',
+                null,
+                'Value'
+              ),
+              _react2.default.createElement(
+                'th',
+                null,
+                'SchemeLink'
+              ),
+              _react2.default.createElement(
+                'th',
+                null,
+                'SchemeAgencyId'
+              ),
+              _react2.default.createElement(
+                'th',
+                null,
+                'agencyUri'
+              ),
+              _react2.default.createElement(
+                'th',
+                null,
+                'schemeVersionId'
+              ),
+              _react2.default.createElement(
+                'th',
+                null,
+                'Description'
+              )
+            )
+          ),
+          _react2.default.createElement(
+            'tbody',
+            null,
+            _react2.default.createElement(
+              'tr',
+              null,
+              _react2.default.createElement(
+                'td',
+                null,
+                schemeId && schemeId
+              ),
+              _react2.default.createElement(
+                'td',
+                null,
+                value && value
+              ),
+              _react2.default.createElement(
+                'td',
+                null,
+                schemeLink && schemeLink
+              ),
+              _react2.default.createElement(
+                'td',
+                null,
+                schemeAgencyId && schemeAgencyId
+              ),
+              _react2.default.createElement(
+                'td',
+                null,
+                agencyUri && agencyUri
+              ),
+              _react2.default.createElement(
+                'td',
+                null,
+                schemeVersionId && schemeVersionId
+              ),
+              _react2.default.createElement(
+                'td',
+                null,
+                description && description
               )
             )
           )
@@ -22194,10 +22815,168 @@ var OrderDetailsPanel = function (_Component) {
     }
   }]);
 
-  return OrderDetailsPanel;
+  return IdentifierTypeTable;
 }(_react.Component);
 
-exports.default = OrderDetailsPanel;
+exports.default = IdentifierTypeTable;
+
+/***/ }),
+/* 64 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(1);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _shortid = __webpack_require__(40);
+
+var _shortid2 = _interopRequireDefault(_shortid);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var IdentifierTypeArrayTable = function (_Component) {
+  _inherits(IdentifierTypeArrayTable, _Component);
+
+  function IdentifierTypeArrayTable(props) {
+    _classCallCheck(this, IdentifierTypeArrayTable);
+
+    return _possibleConstructorReturn(this, (IdentifierTypeArrayTable.__proto__ || Object.getPrototypeOf(IdentifierTypeArrayTable)).call(this, props));
+    // console.log('IdentifierTypeArrayTable.props', props);
+  }
+
+  _createClass(IdentifierTypeArrayTable, [{
+    key: 'render',
+    value: function render() {
+      var _props = this.props,
+          comparisonGroupIds = _props.comparisonGroupIds,
+          caption = _props.caption;
+
+      if (comparisonGroupIds.length === 0) return null;
+      var rows = comparisonGroupIds.map(function (id) {
+        return _react2.default.createElement(
+          'tr',
+          { key: _shortid2.default.generate() },
+          _react2.default.createElement(
+            'td',
+            null,
+            id.schemeId && id.schemeId
+          ),
+          _react2.default.createElement(
+            'td',
+            null,
+            id.value && id.value
+          ),
+          _react2.default.createElement(
+            'td',
+            null,
+            id.schemeLink && id.schemeLink
+          ),
+          _react2.default.createElement(
+            'td',
+            null,
+            id.schemeAgencyId && id.schemeAgencyId
+          ),
+          _react2.default.createElement(
+            'td',
+            null,
+            id.agencyUri && id.agencyUri
+          ),
+          _react2.default.createElement(
+            'td',
+            null,
+            id.schemeVersionId && id.schemeVersionId
+          ),
+          _react2.default.createElement(
+            'td',
+            null,
+            id.description && id.description
+          )
+        );
+      });
+
+      return _react2.default.createElement(
+        'div',
+        { className: 'identifierTypeTable' },
+        _react2.default.createElement(
+          'table',
+          { className: 'table' },
+          caption && _react2.default.createElement(
+            'caption',
+            null,
+            caption
+          ),
+          _react2.default.createElement(
+            'thead',
+            null,
+            _react2.default.createElement(
+              'tr',
+              null,
+              _react2.default.createElement(
+                'th',
+                null,
+                'SchemeId'
+              ),
+              _react2.default.createElement(
+                'th',
+                null,
+                'Value'
+              ),
+              _react2.default.createElement(
+                'th',
+                null,
+                'SchemeLink'
+              ),
+              _react2.default.createElement(
+                'th',
+                null,
+                'SchemeAgencyId'
+              ),
+              _react2.default.createElement(
+                'th',
+                null,
+                'agencyUri'
+              ),
+              _react2.default.createElement(
+                'th',
+                null,
+                'schemeVersionId'
+              ),
+              _react2.default.createElement(
+                'th',
+                null,
+                'Description'
+              )
+            )
+          ),
+          _react2.default.createElement(
+            'tbody',
+            null,
+            rows
+          )
+        )
+      );
+    }
+  }]);
+
+  return IdentifierTypeArrayTable;
+}(_react.Component);
+
+exports.default = IdentifierTypeArrayTable;
 
 /***/ })
 /******/ ]);
