@@ -1,0 +1,106 @@
+{
+
+  "orderId": {
+    "value": "102911"
+  },
+
+
+  "party": {
+    "customer": {
+      "id": { "value": "00000123" },
+      "name": "Company ABC",
+      "personContacts": [{
+        "communication": {
+          "email": [{
+            "address": "jane.smith@companyabc.com",
+            "name": "work"
+          }],
+          "phone": [{
+            "formattedNumber": "888-555-1234",
+            "name": "work"
+          }],
+          "web": [{ "url": "www.companyabc.com" }]
+        },
+        "name": { "preferred": "Jane Smith" },
+        "roleCode": "Hiring Manager"
+      }]
+    },
+    "requester": {
+      "id": { "value": "5000234" },
+      "name": "Modern Recruiting ATS",
+      "personContacts": [{
+        "communication": {
+          "email": [{
+            "address": "robert.jones@ats.com",
+            "name": "work"
+          }],
+          "phone": [{
+            "formattedNumber": "888-555-0123",
+            "name": "work"
+          }],
+          "web": [{ "url": "www.ats.com" }]
+        },
+        "name": {
+          "preferred": "Bob Jones",
+          "given": "Robert",
+          "family": "Jones"
+        },
+        "roleCode": "ATS Account Representative"
+      }]
+    },
+    "supplier": {
+      "id": { "value": "5000234" },
+      "name": "Executive Assessments, Inc.",
+      "personContacts": [{
+        "communication": {
+          "email": [{
+            "address": "william.peterson@exectesters.com",
+            "name": "work"
+          }],
+          "phone": [{
+            "formattedNumber": "888-555-9876",
+            "name": "work"
+          }],
+          "web": [{ "url": "www.exectesters.com" }]
+        },
+        "name": {
+          "preferred": "Bill Peterson",
+          "given": "William",
+          "family": "Peterson"
+        },
+        "roleCode": "ATS Account Representative"
+      }]
+    }
+  },
+
+
+  "subject": {
+    "communication": {
+      "email": [{
+        "address": "whitney.larson@gmail.com"
+      }]
+    },
+    "subjectId": {
+      "value": "C001211"
+    },
+    "name": {
+      "formattedName": "Whitney Larson"
+    }
+  },
+  "results": [{
+    "packageId": "pkg12345",
+    "overallResult": {
+      "passedIndicator": true
+    },
+    "accessPoint": {
+      "uri": "http://abc.com/reports/pkg12345?orderId=102911"
+    }
+  }],
+  "assessmentResultsURL": {
+    "uri": "https://reports.example-ap.com/api/v1/id=123456&",
+    "message": "Assessment report will be available at this URL.",
+    "validFrom": "2016-12-02",
+    "validTo": "2017-02-01",
+    "statusCode": ""
+  }
+}

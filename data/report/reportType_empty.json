@@ -1,3 +1,104 @@
 {
 
+  "orderId": {
+    "value": ""
+  },
+
+  "party": {
+    "customer": {
+      "id": { "value": "" },
+      "name": "",
+      "personContacts": [{
+        "communication": {
+          "email": [{
+            "address": "",
+            "name": ""
+          }],
+          "phone": [{
+            "formattedNumber": "",
+            "name": ""
+          }],
+          "web": [{ "url": "" }]
+        },
+        "name": { "preferred": "" },
+        "roleCode": ""
+      }]
+    },
+    "requester": {
+      "id": { "value": "" },
+      "name": "",
+      "personContacts": [{
+        "communication": {
+          "email": [{
+            "address": "",
+            "name": ""
+          }],
+          "phone": [{
+            "formattedNumber": "",
+            "name": ""
+          }],
+          "web": [{ "url": "" }]
+        },
+        "name": {
+          "formattedName": "",
+          "given": "",
+          "family": ""
+        },
+        "roleCode": ""
+      }]
+    },
+    "supplier": {
+      "id": { "value": "" },
+      "name": "",
+      "personContacts": [{
+        "communication": {
+          "email": [{
+            "address": "",
+            "name": ""
+          }],
+          "phone": [{
+            "formattedNumber": "",
+            "name": ""
+          }],
+          "web": [{ "url": "" }]
+        },
+        "name": {
+          "formattedName": "",
+          "given": "",
+          "family": ""
+        },
+        "roleCode": ""
+      }]
+    }
+  },
+
+  "subject": {
+    "communication": {
+      "email": [{
+        "address": ""
+      }]
+    },
+    "subjectId": {
+      "value": ""
+    },
+    "name": {
+      "formattedName": ""
+    }
+  },
+  "results": [{
+    "packageId": "",
+    "overallResult": {
+      "passedIndicator": true
+    },
+    "accessPoint": {
+      "uri": ""
+    }
+  }],
+  "assessmentResultsURL": {
+    "uri": "",
+    "message": "",
+    "validFrom": "",
+    "validTo": "",
+    "statusCode": ""
+  }
 }

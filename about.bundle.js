@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 65);
+/******/ 	return __webpack_require__(__webpack_require__.s = 66);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -21422,7 +21422,8 @@ exports.default = Footer;
 /* 62 */,
 /* 63 */,
 /* 64 */,
-/* 65 */
+/* 65 */,
+/* 66 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -21436,7 +21437,7 @@ var _reactDom = __webpack_require__(17);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
-var _About = __webpack_require__(66);
+var _About = __webpack_require__(67);
 
 var _About2 = _interopRequireDefault(_About);
 
@@ -21468,7 +21469,7 @@ _reactDom2.default.render(_react2.default.createElement(_Footer2.default, footer
 _reactDom2.default.render(_react2.default.createElement(_About2.default, null), document.querySelector('main'));
 
 /***/ }),
-/* 66 */
+/* 67 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -21482,7 +21483,7 @@ var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _about = __webpack_require__(67);
+var _about = __webpack_require__(68);
 
 var _about2 = _interopRequireDefault(_about);
 
@@ -21566,7 +21567,7 @@ var About = function About() {
 exports.default = About;
 
 /***/ }),
-/* 67 */
+/* 68 */
 /***/ (function(module, exports) {
 
 module.exports = {"@context":"http://schema.org","@type":"AboutPage","url":"https://chrispauley.github.io/hros_common/","name":"HR Open Standards","author":{"@type":"Person","name":"Chris Pauley"},"description":"Any sort of description, I'd keep it short","publisher":"Chris Pauley","potentialAction":{"@type":"SearchAction","target":"http://www.example.com/?s={search_term}","query-input":"required name=search_term"}}

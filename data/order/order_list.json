@@ -2,10 +2,10 @@
   { "formattedName": "Catalog Empty",
     "link": "data/order/orderType_empty.json"
   },
-  { "formattedName": "order_01",
-    "link": "data/order/order_01.json"
+  { "formattedName": "orderType_01",
+    "link": "data/order/orderType_01.json"
   },
-  { "formattedName": "order_02",
-    "link": "data/order/order_02.json"
+  { "formattedName": "orderType_02",
+    "link": "data/order/orderType_02.json"
   }
 ]

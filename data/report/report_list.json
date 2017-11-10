@@ -2,10 +2,10 @@
   { "formattedName": "Report Empty",
     "link": "data/report/reportType_empty.json"
   },
-  { "formattedName": "report_01",
+  { "formattedName": "reportType_01",
     "link": "data/report/report_01.json"
   },
-  { "formattedName": "report_02",
-    "link": "data/report/report_02.json"
+  { "formattedName": "reportType_02",
+    "link": "data/report/reportType_02.json"
   }
 ]

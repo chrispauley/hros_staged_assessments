@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 62);
+/******/ 	return __webpack_require__(__webpack_require__.s = 63);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -21716,7 +21716,8 @@ exports.default = PartyTypeCard;
 /* 59 */,
 /* 60 */,
 /* 61 */,
-/* 62 */
+/* 62 */,
+/* 63 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -21730,7 +21731,7 @@ var _reactDom = __webpack_require__(17);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
-var _ReportPage = __webpack_require__(63);
+var _ReportPage = __webpack_require__(64);
 
 var _ReportPage2 = _interopRequireDefault(_ReportPage);
 
@@ -21762,7 +21763,7 @@ _reactDom2.default.render(_react2.default.createElement(_Footer2.default, footer
 _reactDom2.default.render(_react2.default.createElement(_ReportPage2.default, null), document.querySelector('main'));
 
 /***/ }),
-/* 63 */
+/* 64 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -21784,7 +21785,7 @@ var _DropLoader = __webpack_require__(34);
 
 var _DropLoader2 = _interopRequireDefault(_DropLoader);
 
-var _ReportSelectPanel = __webpack_require__(64);
+var _ReportSelectPanel = __webpack_require__(65);
 
 var _ReportSelectPanel2 = _interopRequireDefault(_ReportSelectPanel);
 
@@ -21911,7 +21912,7 @@ var ReportPage = function (_Component) {
 exports.default = ReportPage;
 
 /***/ }),
-/* 64 */
+/* 65 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";

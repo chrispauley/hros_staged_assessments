@@ -3,12 +3,18 @@
     "link": "data/catalog/catalogType_empty.json"
   },
   { "formattedName": "Catalog 01",
-    "link": "data/catalog/catalog_01.json"
+    "link": "data/catalog/catalogType_01.json"
   },
   { "formattedName": "Catalog 02",
-    "link": "data/catalog/catalog_02.json"
+    "link": "data/catalog/catalogType_02.json"
   },
   { "formattedName": "Catalog 03",
-    "link": "data/catalog/catalog_03.json"
+    "link": "data/catalog/catalogType_03.json"
+  },
+  { "formattedName": "Use Case 1 Step 2",
+    "link": "data/catalog/catalogType_ucs1_step01.json"
+  },
+  { "formattedName": "Use Case 1 Step 2",
+    "link": "data/catalog/catalogType_ucs1_step02.json"
   }
 ]

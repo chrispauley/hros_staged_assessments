@@ -1,0 +1,37 @@
+{
+  "documentSequence": 1,
+
+  "packageId": "",
+
+  "comparisonGroupIds": [{ "schemeId": "", "value": "" }],
+
+  "assessmentRequesterName": "",
+
+  "subject": {
+
+    "subjectId": { "schemeId": "", "value": "" },
+    "internalCandidateIndicator": false,
+    "accomodationTypeCodes": [""],
+
+    "name": { "formattedName": "" },
+    "communication": {
+      "email": [{ "address": "", "name": "work" }]
+    },
+    "primaryLanguage": "en-US"
+  },
+
+  "assessmentLanguageCodes": ["en-US"],
+  "assessmentResultLanguageCodes": ["en-US"],
+  "assessmentAccess": {
+    "id": { "schemeId": "", "value": "" },
+    "assessmentCommunication": {
+      "email": [{ "address": "", "name": "work" }]
+    },
+    "descriptions": [""]
+  },
+  "testLocationId": { "schemeId": "", "value": "" },
+  "assessmentAccessURL": { "uri": "", "statusCode": "", "message": "", "timeOut": 1000 },
+  "onCompletionURL": { "uri": "", "statusCode": "", "message": "", "timeOut": 1000 },
+  "sendAssessmentResultsToURL": { "uri": "", "statusCode": "", "message": "", "timeOut": 1000 },
+  "invitationByPartyCode": ""
+}

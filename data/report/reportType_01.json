@@ -1,0 +1,104 @@
+{
+
+  "orderId": {
+    "value": "102911"
+  },
+
+  "party": {
+    "customer": {
+      "id": { "value": "00000124" },
+      "name": "Company XYZ",
+      "personContacts": [{
+        "communication": {
+          "email": [{
+            "address": "teri.may@companyxyz.com",
+            "name": "work"
+          }],
+          "phone": [{
+            "formattedNumber": "888-555-1234",
+            "name": "work"
+          }],
+          "web": [{ "url": "www.companyxyz.com" }]
+        },
+        "name": { "preferred": "Teri May" },
+        "roleCode": "Hiring Manager"
+      }]
+    },
+    "requester": {
+      "id": { "value": "5000234" },
+      "name": "Modern Recruiting ATS",
+      "personContacts": [{
+        "communication": {
+          "email": [{
+            "address": "ken.curtis@ats.com",
+            "name": "work"
+          }],
+          "phone": [{
+            "formattedNumber": "888-555-0123",
+            "name": "work"
+          }],
+          "web": [{ "url": "www.ats.com" }]
+        },
+        "name": {
+          "formattedName": "Ken Curtis",
+          "given": "Robert",
+          "family": "Jones"
+        },
+        "roleCode": "ATS Account Representative"
+      }]
+    },
+    "supplier": {
+      "id": { "value": "5000234" },
+      "name": "Executive Assessments, Inc.",
+      "personContacts": [{
+        "communication": {
+          "email": [{
+            "address": "william.peterson@exectesters.com",
+            "name": "work"
+          }],
+          "phone": [{
+            "formattedNumber": "888-555-9876",
+            "name": "work"
+          }],
+          "web": [{ "url": "www.exectesters.com" }]
+        },
+        "name": {
+          "formattedName": "Bill Peterson",
+          "given": "William",
+          "family": "Peterson"
+        },
+        "roleCode": "ATS Account Representative"
+      }]
+    }
+  },
+
+  "subject": {
+    "communication": {
+      "email": [{
+        "address": "brett.burke@gmail.com"
+      }]
+    },
+    "subjectId": {
+      "value": "C001211"
+    },
+    "name": {
+      "formattedName": "Brett Burke"
+    }
+  },
+  "results": [{
+    "packageId": "pkg12345",
+    "overallResult": {
+      "passedIndicator": true
+    },
+    "accessPoint": {
+      "uri": "http://abc.com/reports/pkg12345?orderId=102911"
+    }
+  }],
+  "assessmentResultsURL": {
+    "uri": "https://reports.example-ap.com/api/v1/id=123456&",
+    "message": "Assessment report will be available at this URL.",
+    "validFrom": "2016-12-02",
+    "validTo": "2017-02-01",
+    "statusCode": ""
+  }
+}
